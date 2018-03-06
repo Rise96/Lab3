@@ -1,38 +1,35 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
+﻿
 namespace Lab3
 {
     class AlternationFinder
     {
         public string IsItAlternate(int[] massiveOfNumbers)
         {
-            string[] result;
             int alternate = 0;
-            int previousNumber = 0;
-            int currentNumber = 0;
-            int NumberOfLastNumber=0;
-            for(int i = 0; i < massiveOfNumbers.Length; i++)
+            bool previousNumber =IsItEven(massiveOfNumbers[0]);
+            bool currentNumber = false;
+            for(int i = 1; i < massiveOfNumbers.Length; i++)
             {
-                if (massiveOfNumbers[i] % 2 == 0)
+                currentNumber = IsItEven(massiveOfNumbers[i]);
+                if (previousNumber == currentNumber)
                 {
-                    currentNumber = 1;
+                    alternate = i + 1;
+                    break;
                 }
-                if (previousNumber != currentNumber)
-                {
-                    alternate = 1;
-                }
-                else
-                {
-                    alternate = 0;
-                    NumberOfLastNumber = i;
-                }
+                previousNumber = currentNumber;
             }
-            result[1] = NumberOfLastNumber.ToString();
-            return result;
+            return alternate.ToString();
+        }
+        private bool IsItEven(int number)
+        {
+            if(number % 2 == 0)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
         }
     }
 }
