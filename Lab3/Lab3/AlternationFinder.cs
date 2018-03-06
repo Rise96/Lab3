@@ -3,33 +3,27 @@ namespace Lab3
 {
     class AlternationFinder
     {
-        public string IsItAlternate(int[] massiveOfNumbers)
+        public string IsItAlternate(int[] arrayOfNumbers)
         {
-            int alternate = 0;
-            bool previousNumber =IsItEven(massiveOfNumbers[0]);
-            bool currentNumber = false;
-            for(int i = 1; i < massiveOfNumbers.Length; i++)
+            int alternation = 0;
+            bool previousNumber = IsEven(arrayOfNumbers[0]);
+            bool currentNumberIsEven = false;
+            for (int i = 1; i < arrayOfNumbers.Length; i++)
             {
-                currentNumber = IsItEven(massiveOfNumbers[i]);
-                if (previousNumber == currentNumber)
+                currentNumberIsEven = IsEven(arrayOfNumbers[i]);
+                if (previousNumber == currentNumberIsEven)
                 {
-                    alternate = i + 1;
+                    alternation = i + 1;
                     break;
                 }
-                previousNumber = currentNumber;
+                previousNumber = currentNumberIsEven;
             }
-            return alternate.ToString();
+            return alternation.ToString();
         }
-        private bool IsItEven(int number)
+
+        private bool IsEven(int number)
         {
-            if(number % 2 == 0)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return number % 2 == 0;
         }
     }
 }
